@@ -1,0 +1,2 @@
+# This directory contains Flink connector JAR files
+# Run scripts/download_jars.ps1 (Windows) or scripts/download_jars.sh (Linux/Mac) to download them

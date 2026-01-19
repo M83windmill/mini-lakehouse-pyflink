@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  S3A Configuration for MinIO
+  This file configures Hadoop's S3A filesystem to connect to MinIO
+-->
+<configuration>
+    <!-- MinIO endpoint (use container name in Docker network) -->
+    <property>
+        <name>fs.s3a.endpoint</name>
+        <value>http://minio:9000</value>
+        <description>MinIO S3 API endpoint</description>
+    </property>
+
+    <!-- Access credentials -->
+    <property>
+        <name>fs.s3a.access.key</name>
+        <value>minioadmin</value>
+        <description>MinIO access key</description>
+    </property>
+
+    <property>
+        <name>fs.s3a.secret.key</name>
+        <value>minioadmin</value>
+        <description>MinIO secret key</description>
+    </property>
+
+    <!-- Use path-style access (required for MinIO) -->
+    <property>
+        <name>fs.s3a.path.style.access</name>
+        <value>true</value>
+        <description>Enable path-style access instead of virtual-hosted-style</description>
+    </property>
+
+    <!-- Disable SSL (MinIO running without TLS in dev) -->
+    <property>
+        <name>fs.s3a.connection.ssl.enabled</name>
+        <value>false</value>
+        <description>Disable SSL for local development</description>
+    </property>
+
+    <!-- S3A implementation class -->
+    <property>
+        <name>fs.s3a.impl</name>
+        <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
+        <description>S3A FileSystem implementation</description>
+    </property>
+
+    <!-- AWS SDK signer type -->
+    <property>
+        <name>fs.s3a.aws.credentials.provider</name>
+        <value>org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider</value>
+        <description>Use simple credentials provider</description>
+    </property>
+
+    <!-- Connection settings -->
+    <property>
+        <name>fs.s3a.connection.maximum</name>
+        <value>100</value>
+        <description>Maximum number of connections to S3</description>
+    </property>
+
+    <property>
+        <name>fs.s3a.connection.establish.timeout</name>
+        <value>5000</value>
+        <description>Connection establishment timeout in milliseconds</description>
+    </property>
+
+    <property>
+        <name>fs.s3a.connection.timeout</name>
+        <value>200000</value>
+        <description>Socket connection timeout in milliseconds</description>
+    </property>
+
+    <!-- Performance tuning -->
+    <property>
+        <name>fs.s3a.fast.upload</name>
+        <value>true</value>
+        <description>Enable fast upload</description>
+    </property>
+
+    <property>
+        <name>fs.s3a.fast.upload.buffer</name>
+        <value>disk</value>
+        <description>Buffer type for fast upload</description>
+    </property>
+</configuration>
