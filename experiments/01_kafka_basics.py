@@ -26,7 +26,7 @@ from kafka.errors import TopicAlreadyExistsError
 
 
 # Configuration
-BOOTSTRAP_SERVERS = ["localhost:9092"]
+BOOTSTRAP_SERVERS = ["127.0.0.1:9092"]
 TOPIC_NAME = "experiment_topic"
 
 

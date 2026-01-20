@@ -8,14 +8,14 @@ echo "Initializing Kafka topic..."
 
 # Wait for Kafka to be ready
 echo "Waiting for Kafka to be ready..."
-until docker exec kafka kafka-topics.sh --bootstrap-server localhost:9092 --list 2>/dev/null; do
+until docker exec kafka /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list 2>/dev/null; do
     echo "Kafka not ready yet, waiting..."
     sleep 2
 done
 
 # Create the trades topic
 echo "Creating 'trades' topic..."
-docker exec kafka kafka-topics.sh \
+docker exec kafka /opt/kafka/bin/kafka-topics.sh \
     --bootstrap-server localhost:9092 \
     --create \
     --topic trades \
@@ -26,7 +26,7 @@ docker exec kafka kafka-topics.sh \
 # Verify topic was created
 echo ""
 echo "Verifying topic..."
-docker exec kafka kafka-topics.sh \
+docker exec kafka /opt/kafka/bin/kafka-topics.sh \
     --bootstrap-server localhost:9092 \
     --describe \
     --topic trades
